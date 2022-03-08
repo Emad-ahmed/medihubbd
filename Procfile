@@ -1,2 +1,2 @@
-"web: gunicorn app:app"
+web: gunicorn app:app
 release: python manage.py migrate
