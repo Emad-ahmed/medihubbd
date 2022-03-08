@@ -63,18 +63,17 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5 mt-3">
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link homebtn"
                 aria-current="page"
                 href="/"
-                style="color: black"
+                style="color: white"
                 >Home</a
               >
             </li>
 
             <div class="dropdown">
-              <a href="" class="dropbtn" href="#" id="electronicsDropdown"
-                >Categories <i class="fas fa-chevron-circle-down"></i
-              ></a>
+              <a class="dropbtn" id="electronicsDropdown">Categories </a>
+              <i class="fas fa-chevron-circle-down text-white"></i>
               <div class="dropdown-content">
                 <a href="{% url 'covid' %}">Covid 19 Special</a>
                 <div class="dropdown-divider"></div>
@@ -94,9 +93,9 @@
               </div>
             </div>
             <div class="dropdown">
-              <a href="" class="dropbtn" href="#" id="fashionDropdown"
-                >Information <i class="fas fa-chevron-circle-down"> </i>
-              </a>
+              <a class="dropbtn" id="fashionDropdown">Information </a
+              ><i class="fas fa-chevron-circle-down text-white"> </i>
+
               <div class="dropdown-content">
                 <a href="{% url 'doctor' %}">Doctor</a>
                 <div class="dropdown-divider"></div>
@@ -120,10 +119,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-2">
               {% if request.user.is_authenticated %}
               <div class="dropdown">
-                <a href="" class="dropbtn ms-5" href="#" id="profileDropdown">
+                <a class="dropbtn ms-5" id="profileDropdown">
                   <i class="fas fa-user me-1"></i>
-                  <i class="fas fa-chevron-circle-down"></i
-                ></a>
+                </a>
+                <i class="fas fa-chevron-circle-down text-white"></i>
                 <div class="dropdown-content">
                   <a href="{% url 'profile' %}">Profile</a>
                   <div class="dropdown-divider"></div>
@@ -135,7 +134,9 @@
                 </div>
               </div>
               <li class="nav-item mx-2">
-                <a href="{% url 'show_cart' %}" class="nav-link text-white"
+                <a
+                  href="{% url 'show_cart' %}"
+                  class="nav-link text-white cartbtn"
                   ><span class="badge bg-danger">{{tcart|length}}</span>
                   <i class="fas fa-cart-arrow-down"></i>
                 </a>

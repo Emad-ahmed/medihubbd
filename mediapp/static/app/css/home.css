@@ -113,3 +113,29 @@
 #collapseExample p {
     color: #000;
 }
+
+@media only screen and (max-width: 1200px) {
+    .modal-content {
+        margin: auto;
+        width: 30rem;
+    }
+    .dropdown-content {
+        margin-top: 0.3rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-content {
+        margin: auto;
+        width: 20rem;
+    }
+    .dropdown-content {
+        margin-top: 0.3rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .dropdown-content {
+        margin-top: 0.3rem;
+    }
+}
