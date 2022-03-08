@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Search{%
+endblock title %} {% block main-content %}
+
+<h1 class="text-center">Found Search Result</h1>
+
+<hr />
+{% if product %}
+<div class="container text-center">
+  {% for pro in product %}
+
+  <img
+    src="{{pro.product_image.url}}"
+    alt=""
+    width="400"
+    height="400"
+    style="object-fit: cover"
+  />
+
+  <h4 class="mt-2">Product Title: {{pro.title}}</h4>
+  <p>{{pro.description}}</p>
+  <br />
+  <h4>
+    Taka . {{pro.discounted_price}}
+    <small class="fw-light text-decoration-line-through"
+      >{{pro.selling_price}}</small
+    >
+  </h4>
+  <br />
+
+  <form action="/add-to-cart" class="d-inline">
+    <input type="hidden" name="prod_id" value="{{pro.id}}" id="prod_id" />
+    <button type="submit" class="btn btn-primary shadow px-5 py-2">
+      Add To Cart
+    </button>
+  </form>
+  {% endfor %}
+</div>
+{% else %}
+<div style="height: 265px">
+  <h1 class="text-center text-danger" style="margin-top: 10%">
+    Not Found Anything
+  </h1>
+</div>
+{% endif %} {% endblock main-content %}

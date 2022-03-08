@@ -1,0 +1,144 @@
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Top Wear{%endblock title %} <br />
+{% block main-content %}
+
+<style>
+  table {
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    border-right: 1px solid green;
+    border-left: 1px solid green;
+  }
+  thead {
+    top: 0;
+    position: sticky;
+    background: #000;
+    color: white;
+  }
+  th {
+    &:first-child {
+      position: sticky;
+      left: 0;
+    }
+  }
+
+  tbody tr,
+  thead tr {
+    position: relative;
+  }
+  tbody th {
+    position: sticky;
+    left: 0;
+  }
+  #myInput {
+    border: 1px solid tomato;
+  }
+</style>
+
+<div class="container">
+  <h1 class="text-center mt-5 mb-4 border-bottom">Covid 19 Information</h1>
+  <div class="row">
+    <div class="card col m-2 bg-warning">
+      <img class="card-img-top" src="holder.js/100x180/" alt="" />
+      <div class="card-body">
+        <h6 class="card-title">New Confirmed</h6>
+        <p class="card-text">{{globalSummary.NewConfirmed}}</p>
+      </div>
+    </div>
+    <div class="card col m-2 bg-info">
+      <div class="card-body">
+        <h6 class="card-title">Total Confirmed</h6>
+        <p class="card-text">{{globalSummary.TotalConfirmed}}</p>
+      </div>
+    </div>
+    <div class="card col m-2 bg-danger">
+      <div class="card-body">
+        <h6 class="card-title">New Deaths</h6>
+        <p class="card-text">{{globalSummary.NewDeaths}}</p>
+      </div>
+    </div>
+    <div class="card col m-2 bg-warning">
+      <div class="card-body">
+        <h6 class="card-title">Total Deaths</h6>
+        <p class="card-text">{{globalSummary.TotalDeaths}}</p>
+      </div>
+    </div>
+    <div class="card col m-2 bg-success">
+      <div class="card-body">
+        <h6 class="card-title">New Recovered</h6>
+        <p class="card-text">{{globalSummary.NewRecovered}}</p>
+      </div>
+    </div>
+    <div class="card col m-2 bg-primary">
+      <div class="card-body">
+        <h6 class="card-title">Total Recovered</h6>
+        <p class="card-text">{{globalSummary.TotalRecovered}}</p>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  <hr />
+
+  <h4 class="alert alert-light border rounded">Country Wise Summary</h4>
+
+  <input
+    class="form-control mb-3"
+    type="text"
+    name=""
+    id="myInput"
+    placeholder="Country..."
+    onkeyup="searchFun()"
+  />
+  <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th>Sno.</th>
+        <th>Country</th>
+        <th>Total Confirmed</th>
+        <th>Total Deaths</th>
+        <th>Total Recovered</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in countries %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{c.Country}}</td>
+        <td>{{c.TotalConfirmed}}</td>
+        <td>{{c.TotalDeaths}}</td>
+        <td>{{c.TotalRecovered}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'app/js/all.min.js' %}"></script>
+<script src="{% static 'app/js/myscript.js' %}"></script>
+
+<script>
+  const searchFun = () => {
+    let filter = document.getElementById("myInput").value.toUpperCase();
+
+    let myTable = document.getElementById("myTable");
+    let tr = myTable.getElementsByTagName("tr");
+
+    for (var i = 0; i < tr.length; i++) {
+      let td = tr[i].getElementsByTagName("td")[1];
+
+      if (td) {
+        let textvalue = td.textContent || td.innerHTML;
+        if (textvalue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  };
+</script>
+
+{% endblock main-content %}

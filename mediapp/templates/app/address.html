@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Buy Now{%endblock title %} <br />
+{% block main-content %}
+
+<style>
+  .d-grid btn {
+    width: 10rem;
+  }
+  body {
+    background: white;
+  }
+  .card-body h3 {
+    color: black;
+    text-align: center;
+  }
+  .card-body p {
+    margin-top: 2rem;
+    color: black;
+  }
+</style>
+<div class="container my-5" style="height: 100vh">
+  <div class="row my-5">
+    <div class="col-lg-3 border-end">
+      <ul class="list-unstyled">
+        <li class="d-grid">
+          <a href="{% url 'profile' %}" class="btn ">Profile</a>
+        </li>
+        <li class="d-grid">
+          <a href="{% url 'address' %}" class="btn {{active}}">Address</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9">
+        <div class="row">
+        {% for ad in add %}
+        <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h3>Address</span> {{forloop.counter}}</h3>
+            <p><span> Name:</span> {{ad.name}}</p>
+            <p><span>Locality:</span> {{ad.locality}}</p>
+            <p><span>City:</span> {{ad.city}}</p>
+            <p><span>State:</span> {{ad.state}}</p>
+            <p><span>Pin Code:</span> {{ad.zipcode}}</p>
+          </div>
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+      </div>
+    </div>
+  </div>
+  {% endblock main-content %}
+</div>

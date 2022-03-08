@@ -1,0 +1,418 @@
+/* font-family: 'Odibee Sans', cursive;
+font-family: 'Roboto', sans-serif;
+font-family: 'Sigmar One', cursive;
+font-family: 'Stint Ultra Condensed', cursive; */
+
+body {
+    background-color: white;
+}
+
+nav {
+    background-color: #000000;
+}
+
+.navbar-brand {
+    font-family: 'Odibee Sans', cursive;
+    font-size: 1.4rem;
+}
+
+.navbar-brand img {
+    border-radius: 20px 20px;
+}
+
+nav ul li a {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 5.5px;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f2f6;
+    min-width: 260px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    text-decoration: none;
+}
+
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    text-decoration: none;
+}
+
+.searchbtn {
+    border-radius: 50px 50px;
+    padding: 10px;
+    width: 15rem;
+    padding-left: 2rem;
+}
+
+.btnsearch {
+    width: 5rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    background-color: #FF1A1A;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px 5px;
+}
+
+.loginbtn {
+    background-color: #FF1A1A;
+    border-radius: 10px 10px;
+    margin-left: 2rem;
+    padding-left: 2.2rem;
+    padding-right: 2.2rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    margin-top: 2rem;
+    text-decoration: none;
+}
+
+.loginbtn:hover {
+    color: rgb(235, 235, 235);
+}
+
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+
+
+/* Footer */
+
+footer {
+    box-sizing: border-box;
+    position: relative;
+    margin: 10rem 0px 0px 0px;
+    background-color: black;
+    color: #ffffff;
+    font-style: normal;
+    padding: 4px 0 10px;
+    line-height: 24px;
+    font-family: 'Tajawal', sans-serif;
+    word-break: normal;
+    border-radius: 10px;
+    box-shadow: 2px 6px 60px 20px rgba(0, 0, 0, 0.1);
+}
+
+.row-footer {
+    padding: 3px 20px 3px 20px;
+}
+
+.row-footer::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 0.1rem ridge rgba(100, 150, 173, 0.596);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oregano&display=swap');
+.site-logo {
+    float: left;
+    width: 15%;
+    padding: 10px;
+}
+
+.site-logo span {
+    font-family: 'Oregano', cursive;
+    font-size: 20px;
+}
+
+.main-nav {
+    position: absolute;
+    top: 40%;
+    left: 6%;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: -1px;
+    box-shadow: 2px 2px 60px 8px rgba(102, 98, 98, 0.5);
+}
+
+.main-nav li {
+    list-style: none;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #000;
+    transform: rotate(45deg);
+    transition: 0.5s;
+    margin: -30px;
+    opacity: 0.5;
+}
+
+.main-nav li:hover {
+    opacity: 1;
+}
+
+.main-nav li span {
+    margin-left: 6.5px;
+}
+
+.main-nav li.item1 {
+    top: 0;
+    left: 0;
+    color: #00a9c7;
+}
+
+.main-nav li.item2 {
+    bottom: 0;
+    left: 25%;
+    color: red;
+}
+
+.main-nav li.item3 {
+    top: 0;
+    left: 50%;
+    color: yellowgreen;
+}
+
+.main-nav li.item4 {
+    bottom: 0;
+    left: 75%;
+    color: darkmagenta;
+}
+
+.site-links {
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+.site-links span {
+    font-family: 'Gruppo', cursive;
+}
+
+ul.list-links {
+    list-style-type: none;
+}
+
+ul.list-links li {
+    font-size: 14px;
+    margin-left: -38px;
+}
+
+.adr-email {
+    float: left;
+    width: 28%;
+    padding: 10px;
+}
+
+.adr-email span {
+    font-family: 'Gruppo', cursive;
+}
+
+.adr-email ul {
+    font-size: 14px;
+    list-style-type: none;
+    margin-left: -38px;
+}
+
+.location i {
+    margin-right: 11px;
+}
+
+.email a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: aqua;
+}
+
+.email:hover a {
+    color: #00a9c7;
+}
+
+.subscribe-form {
+    float: left;
+    margin-top: 50px;
+}
+
+.subscribe-form>input {
+    width: 200px;
+    background: rgba(0, 0, 0, 0.205);
+    border-radius: 10px;
+    border-color: #013942;
+    color: gray;
+    font-size: 14px;
+    border: 0.1 ridge;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+    outline: 0;
+    padding: 6px 10px;
+}
+
+.subscribe-form>input:focus {
+    border-color: #00a9c7;
+    color: beige;
+}
+
+.subscribe-form>button {
+    display: inline-block;
+    background: #183d53;
+    color: rgb(223, 254, 255);
+    font-size: 14px;
+    border-radius: 6px;
+    border: 0.1 solid;
+    border-color: #080a1a;
+    outline: 0;
+    margin-left: -14px;
+    box-shadow: 2px 6px 10px 0 rgba(82, 82, 82, 0.1);
+    padding: 3px 5px;
+    transition: all 200ms ease-in;
+    cursor: pointer;
+}
+
+.subscribe-form>button:hover {
+    background-color: #151e50;
+}
+
+.subscribe-form>p {
+    margin-left: 6px;
+    font-size: 13px;
+}
+
+.follow-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.follow-icons li {
+    margin: 0 5px;
+    list-style: none;
+}
+
+.follow-icons li i {
+    font-size: 12px;
+    font-weight: 0;
+    color: #fff;
+}
+
+.follow-icons li span {
+    padding-right: 6px;
+}
+
+.arrow {
+    visibility: visible;
+    padding-right: 15px;
+    position: relative;
+    animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+    0% {
+        left: 0px;
+    }
+    25% {
+        left: 15px;
+    }
+    50% {
+        left: 0px
+    }
+    75% {
+        left: 15px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+.right-dis {
+    float: right;
+}
+
+.left-dis {
+    float: left;
+}
+
+@media (max-width:900px) {
+    .subscribe-form {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .subscribe-form>p {
+        margin-left: -5px;
+    }
+    .site-logo {
+        float: left;
+        width: 28%;
+        padding: 10px;
+    }
+    .main-nav {
+        top: 30%;
+        left: 12%;
+    }
+    .site-links {
+        float: left;
+        width: 20%;
+        padding: 10px;
+    }
+    .adr-email {
+        width: 35%;
+    }
+    .adr-email .email {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:600px) {
+    .right-dis {
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+    }
+    .left-dis {
+        width: 100%;
+        text-align: center;
+    }
+}
