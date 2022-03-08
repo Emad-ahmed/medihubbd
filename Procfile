@@ -1,2 +1,2 @@
-web: gunicorn medihubbd.wsgi
+"web: gunicorn app:app"
 release: python manage.py migrate
