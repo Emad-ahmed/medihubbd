@@ -5,7 +5,9 @@
 
 <div class="row">
   <div class="col-lg-1">
+    {% if doctorallinfo.doctor_img %}
     <img src="{{doctorallinfo.doctor_img.url}}" alt="" />
+    {% endif %}
   </div>
   <div class="col-lg-11 text-center">
     <h1 class="mt-3 mb-3">{{doctorallinfo.name}}</h1>

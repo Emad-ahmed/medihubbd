@@ -4,13 +4,13 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
 from .models import Customer, Product, Cart, OrderPlaced
-from . forms import CustomerRegistrationForm, CustomerProfileForm
+from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, UploadPrescriptionForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from mediapp.forms import UploadPrescriptionForm, DoctorInfoForm
+
 from mediapp.models import Customer, UploadPrescription, DoctorInfo
 import requests
 # def home(request):
@@ -443,3 +443,16 @@ def covidinformation(request):
             data = True
 
     return render(request, 'app/covidinformation.html', {'globalSummary': globalSummary, "countries": countries})
+
+
+class DoctorADD(View):
+    def get(self, request):
+        fm = DoctorInfoForm()
+        return render(request, 'app/DoctorADD.html', {'form': fm})
+
+    def post(self, request):
+        fm = DoctorInfoForm(request.POST, request.FILES)
+
+        if fm.is_valid():
+            fm.save()
+        return render(request, 'app/DoctorADD.html', {'form': fm})

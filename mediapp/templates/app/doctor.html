@@ -13,12 +13,19 @@
   }
 </style>
 <div class="container-fluid">
+  <div class="float-end">
+    <a href="{% url 'add_doctor' %}" class="btn btn-info border-1 border-dark"
+      >Add Doctor Info</a
+    >
+  </div>
   <h1 class="text-center text-dark mt-4 mb-4">Doctor Information</h1>
   <div class="row">
     {% for doctor in doctor_info %}
     <div class="col-lg-3">
       <div class="card" style="width: 18rem; height: 25rem">
+        {% if doctor.doctor_img %}
         <img src="{{doctor.doctor_img.url}}" class="card-img-top" alt="..." />
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title fw-bold">{{doctor.name}}</h5>
           <p class="card-text textp">{{doctor.qualification}}</p>

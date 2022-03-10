@@ -32,6 +32,7 @@ urlpatterns = [
     path('covidinformation/', views.covidinformation, name='covidinformation'),
     path('mobile/<slug:data>', views.mobile, name='mobiledata'),
     path('laptob/', views.laptob, name='laptob'),
+    path('add_doctor/', views.DoctorADD.as_view(), name='add_doctor'),
     path('doctor_details/<int:id>/', views.doctor_details, name='doctor_details'),
     path('laptob/<slug:data>', views.laptob, name='laptobdata'),
     path('checkout/', views.checkout, name='checkout'),
@@ -65,4 +66,5 @@ urlpatterns = [
     path('registration/', views.CustomerRegistrationView.as_view(),
          name='customerregistration'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL,
+           document_root=settings.MEDIA_ROOT)

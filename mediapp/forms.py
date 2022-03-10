@@ -82,7 +82,18 @@ class DoctorInfoForm(forms.ModelForm):
         model = DoctorInfo
         fields = ['name', 'qualification', 'specialist', 'chamber',
                   'chamber_address', 'serial_number', 'visiting_hour', 'new_patient_fee', 'old_patient_fee', 'report_checking_fee', 'doctor_img', 'city']
-        labels = {'name': 'Full Name'}
+        labels = {'name': 'Full Name', 'new_patient_fee': 'Patient Fee'}
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'qualification': forms.TextInput(attrs={'class': 'form-control'}),
+            'specialist': forms.TextInput(attrs={'class': 'form-control'}),
+            'chamber': forms.TextInput(attrs={'class': 'form-control'}),
+            'chamber_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'serial_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'visiting_hour': forms.TextInput(attrs={'class': 'form-control'}),
+            'new_patient_fee': forms.NumberInput(attrs={'class': 'form-control'}),
+            'old_patient_fee': forms.NumberInput(attrs={'class': 'form-control'}),
+            'report_checking_fee': forms.NumberInput(attrs={'class': 'form-control'}),
+            'doctor_img': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'city': forms.Select(attrs={'class': 'form-control'}),
         }
