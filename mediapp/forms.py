@@ -1,5 +1,5 @@
 from django.forms import widgets
-from mediapp.models import Customer, DoctorInfo
+from mediapp.models import Customer, DoctorInfo, Product
 from typing import Set
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UsernameField, PasswordChangeForm, PasswordResetForm, SetPasswordForm
@@ -96,4 +96,24 @@ class DoctorInfoForm(forms.ModelForm):
             'report_checking_fee': forms.NumberInput(attrs={'class': 'form-control'}),
             'doctor_img': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'city': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'cattype', 'selling_price', 'discounted_price',
+                  'description', 'Disclaimer', 'brand', 'category', 'product_image']
+        labels = {'cattype': 'Category Type'}
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'cattype': forms.TextInput(attrs={'class': 'form-control'}),
+            'selling_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'discounted_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'Disclaimer': forms.Textarea(attrs={'class': 'form-control'}),
+            'brand': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'product_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+
         }

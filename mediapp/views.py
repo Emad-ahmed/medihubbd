@@ -4,7 +4,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
 from .models import Customer, Product, Cart, OrderPlaced
-from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, UploadPrescriptionForm
+from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, UploadPrescriptionForm, AddProductForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
@@ -455,3 +455,15 @@ class DoctorADD(View):
         if fm.is_valid():
             fm.save()
         return render(request, 'app/doctoradd.html', {'form': fm})
+
+
+class Addproduct(View):
+    def get(self, request):
+        fm = AddProductForm()
+        return render(request, 'app/productadd.html', {'form': fm})
+
+    def post(self, request):
+        fm = AddProductForm(request.POST, request.FILES)
+        if fm.is_valid():
+            fm.save()
+        return render(request, 'app/productadd.html', {'form': fm})

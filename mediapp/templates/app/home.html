@@ -178,6 +178,12 @@
   <marquee behavior="scroll" direction="left" scrollamount="12"><h1 class="display-5 mt-3"><span class="mar">Bangladesh No 1 Online Pharmacy</span></h1> </marquee>
 </div>
 
+{% if request.user.is_superuser %}
+<div class="ms-4">
+  <a href="{% url 'addproduct' %}" class="btn btn-info border-success">Add Products</a>
+</div>
+{% endif %}
+
 <!-- End Live Sale Section -->
 {% endblock livesale %} {% block main-content %}
 <div class="container my-5">
