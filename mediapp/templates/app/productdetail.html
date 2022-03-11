@@ -36,6 +36,10 @@
     border: 1px solid white;
   }
 
+  .avoffer {
+    color: #696969;
+  }
+
   .addbtn1:hover {
     color: white;
     background: black;
@@ -60,7 +64,7 @@
     <div class="col-sm-5 offset-sm-1">
       <h1 class="m-0">{{product.title}}</h1>
       <p class="cattype">{{product.cattype}}</p>
-      <p>{{product.description}}</p>
+      <p style="color: gray">{{product.description}}</p>
 
       <h4 class="disprice">
         ৳ {{product.discounted_price}}
@@ -106,7 +110,7 @@
         >Buy Now</a
       >
       <h5 class="mt-5">Available Offers</h5>
-      <ul>
+      <ul class="avoffer">
         <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
         <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
         <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
