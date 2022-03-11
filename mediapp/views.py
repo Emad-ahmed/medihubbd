@@ -448,11 +448,10 @@ def covidinformation(request):
 class DoctorADD(View):
     def get(self, request):
         fm = DoctorInfoForm()
-        return render(request, 'app/DoctorADD.html', {'form': fm})
+        return render(request, 'app/doctoradd.html', {'form': fm})
 
     def post(self, request):
         fm = DoctorInfoForm(request.POST, request.FILES)
-
         if fm.is_valid():
             fm.save()
-        return render(request, 'app/DoctorADD.html', {'form': fm})
+        return render(request, 'app/doctoradd.html', {'form': fm})
