@@ -246,34 +246,9 @@ def laptob(request, data=None):
     return render(request, 'app/laptob.html', {'laptob': laptob})
 
 
-def topwear(request, data=None):
-    if data == None:
-        topwear = Product.objects.filter(category='TW')
-    elif data == 'Nike' or data == 'Reebook' or data == "Gucci":
-        topwear = Product.objects.filter(category="TW").filter(brand=data)
-    elif data == "below":
-        topwear = Product.objects.filter(
-            category="TW").filter(discounted_price__lt=1000)
-    elif data == "above":
-        topwear = Product.objects.filter(
-            category="TW").filter(discounted_price__gt=1000)
-    if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/topwear.html', {'topwear': topwear, 'tcart': cart})
-    return render(request, 'app/topwear.html', {'topwear': topwear})
+def covid(request):
 
-
-def covid(request, data=None):
-    if data == None:
-        covid = Product.objects.filter(category='C')
-    elif data == 'Square' or data == 'Anzara' or data == "Infinity":
-        covid = Product.objects.filter(category="C").filter(brand=data)
-    elif data == "below":
-        covid = Product.objects.filter(
-            category="C").filter(discounted_price__lt=1000)
-    elif data == "above":
-        covid = Product.objects.filter(
-            category="C").filter(discounted_price__gt=900)
+    covid = Product.objects.filter(category='C')
 
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
@@ -281,17 +256,69 @@ def covid(request, data=None):
     return render(request, 'app/covid.html', {'covid': covid})
 
 
-def devices(request, data=None):
-    if data == None:
-        devices = Product.objects.filter(category='D')
-    elif data == 'Square' or data == 'Anzara' or data == "Infinity":
-        devices = Product.objects.filter(category="D").filter(brand=data)
-    elif data == "below":
-        devices = Product.objects.filter(
-            category="D").filter(discounted_price__lt=1000)
-    elif data == "above":
-        devices = Product.objects.filter(
-            category="D").filter(discounted_price__gt=900)
+def devices(request):
+
+    devices = Product.objects.filter(category='D')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
+    return render(request, 'app/devices.html', {'devices': devices})
+
+
+def Herbal(request):
+
+    Herbal = Product.objects.filter(category='H')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/Herbal.html', {'Herbal': Herbal, 'tcart': cart})
+    return render(request, 'app/Herbal.html', {'Herbal': Herbal})
+
+
+def BabyMom(request):
+
+    BabyMom = Product.objects.filter(category='BM')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/BabyMom.html', {'BabyMom': BabyMom, 'tcart': cart})
+    return render(request, 'app/BabyMom.html', {'BabyMom': BabyMom})
+
+
+def Nutrition(request):
+
+    Nutrition = Product.objects.filter(category='ND')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/Nutrition.html', {'Nutrition': Nutrition, 'tcart': cart})
+    return render(request, 'app/Nutrition.html', {'Nutrition': Nutrition})
+
+
+def PersonalCare(request, data=None):
+
+    devices = Product.objects.filter(category='D')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
+    return render(request, 'app/devices.html', {'devices': devices})
+
+
+def OTC(request):
+
+    devices = Product.objects.filter(category='D')
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
+    return render(request, 'app/devices.html', {'devices': devices})
+
+
+def Prescription(request):
+
+    devices = Product.objects.filter(category='D')
 
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
@@ -300,7 +327,6 @@ def devices(request, data=None):
 
 
 def login(request):
-
     return render(request, 'app/login.html')
 
 

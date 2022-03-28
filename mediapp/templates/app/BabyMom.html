@@ -1,6 +1,6 @@
 {% extends 'app/base.html' %} <br />
 {% load static %} <br />
-{% block title %}Top Wear{%endblock title %} <br />
+{% block title %}Maby Mom{%endblock title %} <br />
 {% block main-content %}
 
 <style>
@@ -71,9 +71,9 @@
 </style>
 
 <div class="container-fluid my-5">
-  <h1 class="mb-5 text-center">Devices</h1>
+  <h1 class="mb-5 text-center">Baby & Mom care</h1>
   <div class="row">
-    {% for product in devices %}
+    {% for product in BabyMom %}
     <div class="col-lg-4">
       <a href="{% url 'product-detail' product.id %}" class="prodbtn">
         <div class="card mb-5" style="width: 25rem">

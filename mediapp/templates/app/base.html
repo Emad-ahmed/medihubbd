@@ -35,7 +35,7 @@
     <!--Custom CSS-->
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
 
-    <title>MediHub | {% block title %} {% endblock title %}</title>
+    <title>MediHub | Home{% block title %} {% endblock title %}</title>
   </head>
   {% load total_cart %}
 
@@ -81,17 +81,17 @@
                 <div class="dropdown-divider"></div>
                 <a href="{% url 'devices' %}">Devices</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">Herbal and Homeopathy</a>
+                <a href="{% url 'Herbal' %}">Herbal and Homeopathy</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">Baby & Mom care</a>
+                <a href="{% url 'BabyMom' %}">Baby & Mom care</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">Nutrition and drinks</a>
+                <a href="{% url 'Nutrition' %}">Nutrition and drinks</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">Personal care</a>
+                <a href="">Personal care</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">OTC Medicines</a>
+                <a href="">OTC Medicines</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'laptob' %}">Prescription Medicines</a>
+                <a href="">Prescription Medicines</a>
               </div>
             </div>
             <div class="dropdown">
@@ -202,14 +202,11 @@
           <span>Address</span>
           <ul class="">
             <li class="location">
-              <a
-                ><i class="fas fa-map-pin"></i>Sylhet, Golapgonj,
-                Dhakadakshin</a
-              >
+              <a><i class="fas fa-map-pin"></i>Sylhet, SYlhet</a>
             </li>
             <li class="email">
               <a href="mailto:amadahmed1234678@gmail.com?subject=subject text"
-                >amadahmed1234678@gmail.com</a
+                >nahid123@gmail.com</a
               >
             </li>
           </ul>
