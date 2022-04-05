@@ -48,7 +48,6 @@ CATEGORY_CHOICES = (
 class Product(models.Model):
     title = models.CharField(max_length=100)
     cattype = models.CharField(max_length=100, default="Tablet")
-
     selling_price = models.FloatField()
     discounted_price = models.FloatField()
     description = models.TextField()
@@ -120,4 +119,3 @@ class DoctorInfo(models.Model):
 
     def __str__(self):
         return str(self.id)
-
