@@ -19,20 +19,25 @@ import requests
 
 class ProductView(View):
     def get(self, request):
-        covid = Product.objects.filter(category='C')
-        devices = Product.objects.filter(category='D')[:4]
-        herbal = Product.objects.filter(category='H')
-        babymom = Product.objects.filter(category='BM')
-        nudrinks = Product.objects.filter(category='ND')
-        Persoal = Product.objects.filter(category='PC')
-        otc = Product.objects.filter(category='OM')
-        pm = Product.objects.filter(category='PM')
-        fm = UploadPrescriptionForm()
-        if request.user.is_authenticated:
-            cart = Cart.objects.filter(user=request.user)
-            return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
+        myuser = request.user
+        mainuser = Customer.objects.filter(user=myuser)
+        if mainuser:
+            covid = Product.objects.filter(category='C')
+            devices = Product.objects.filter(category='D')[:4]
+            herbal = Product.objects.filter(category='H')
+            babymom = Product.objects.filter(category='BM')
+            nudrinks = Product.objects.filter(category='ND')
+            Persoal = Product.objects.filter(category='PC')
+            otc = Product.objects.filter(category='OM')
+            pm = Product.objects.filter(category='PM')
+            fm = UploadPrescriptionForm()
+            if request.user.is_authenticated:
+                cart = Cart.objects.filter(user=request.user)
+                return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
+            else:
+                return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, "form": fm})
         else:
-            return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, "form": fm})
+            return redirect('profile')
 
     def post(self, request):
         covid = Product.objects.filter(category='C')
@@ -322,8 +327,8 @@ def Prescription(request):
     return render(request, 'app/devices.html', {'devices': devices})
 
 
-def login(request):
-    return render(request, 'app/login.html')
+# def login(request):
+#     return render(request, 'app/login.html')
 
 
 class CustomerRegistrationView(View):
