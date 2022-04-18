@@ -188,8 +188,13 @@ def remove_cart(request):
         return JsonResponse(data)
 
 
-def buy_now(request):
-    return render(request, 'app/buynow.html')
+def buy_now(request, id):
+    myproduct = Product.objects.get(id=id)
+    price = myproduct.discounted_price
+    total_price = price+70
+    user = request.user
+    add = Customer.objects.filter(user=user)
+    return render(request, 'app/buynow.html', {'price': total_price, 'add': add})
 
 
 @login_required
@@ -396,6 +401,7 @@ def payment_done(request):
 @method_decorator(login_required, name='dispatch')
 class ProfileView(View):
     def get(self, request):
+
         form = CustomerProfileForm()
         if request.user.is_authenticated:
             cart = Cart.objects.filter(user=request.user)

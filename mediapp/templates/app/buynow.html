@@ -1,3 +1,81 @@
-{% extends 'app/base.html' %} {% load static %} {% block title %}Buy Now{%
-endblock title %} {% block main-content %} Product Buy Now {% endblock
-main-content %}
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Buy Now{%endblock title %} <br />
+{% block main-content %}
+
+<style>
+  body {
+    background: white;
+  }
+  .container {
+    color: black;
+  }
+</style>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-6">
+      <h4>Order Summary</h4>
+      <hr />
+
+      <p class="fw-bold">Total Cost + Taka 70 = {{price}}</p>
+      <small
+        ><span class="fw-bold">Term and Condition:</span>
+        <span class="text-dark">
+          Your privacy and that of any other person whose information you
+          provide to us is important to us. Please see our privacy policy for
+          details of what information we collect and how we will use and protect
+          it</span
+        ></small
+      >
+    </div>
+    <div class="col-sm-4 offset-sm-1">
+      <h4>Select Shipping Address</h4>
+      <hr />
+      <form action="/paymentdone">
+        {% for ad in add %}
+        <div class="card">
+          <div class="card-body">
+            <h5>{{ad.name}}</h5>
+            <p>{{ad.locality}}, {{ad.city}}, {{ad.state}} - {{ad.zipcode}}</p>
+          </div>
+        </div>
+        <div class="form-check mt-2 mb-5">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="{{ad.id}}"
+            name="custid"
+            id="custadd{{forloop.counter}}"
+          />
+          <label class="form-check-label fw-bold" for="">
+            Address: {{forloop.counter}}
+          </label>
+        </div>
+        {% endfor %}
+        <div class="text-end">
+          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">
+            Continue
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-4">We accept</h5>
+          <img
+            src="{% static 'app/images/payment.png' %}"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
