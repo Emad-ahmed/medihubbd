@@ -35,7 +35,7 @@
     <!--Custom CSS-->
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
 
-    <title>MediHub | Home{% block title %} {% endblock title %}</title>
+    <title>MediHub | {% block title %} {% endblock title %}</title>
   </head>
   {% load total_cart %}
 
@@ -109,7 +109,8 @@
               </div>
             </div>
           </ul>
-          <form class="d-flex mt-2" action="/searchhresult">
+          <form class="d-flex mt-2" action="/searchhresult" method="POST">
+            {% csrf_token %}
             <input
               class="form-control me-2 searchbtn"
               type="search"
@@ -159,8 +160,9 @@
       </div>
     </nav>
 
-    {% block banner_slider %} {% endblock banner_slider %} {% block livesale %}
-    {% endblock livesale %} {% block main-content %} {% endblock main-content %}
+    {% block banner_slider %} {% endblock banner_slider %} <br />
+    {% block livesale %} {% endblock livesale %} <br />
+    {% block main-content %} {% endblock main-content %}
 
     <!-- Start Footer -->
 
@@ -254,7 +256,8 @@
           <strong>LuStudent</strong>
         </div>
         <div class="left-dis">
-          Copyright <strong>CodePy</strong> © 2022. All the rights are reserved.
+          Copyright <strong>Medihub</strong> © 2022. All the rights are
+          reserved.
         </div>
       </div>
     </footer>

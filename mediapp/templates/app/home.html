@@ -3,10 +3,10 @@
  {% load static %} </br>
 
  
- {% block title %}Home{% endblock title %} </br>
+{% block title %}Home{% endblock title %}</br>
 
  
- {% block banner_slider %}
+{% block banner_slider %}
 <link rel="stylesheet" href="{% static 'app/css/home.css' %}" />
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <!--Banner Slider--> 
@@ -81,7 +81,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" >
   <div class="modal-dialog text-center">
     <div class="modal-content w-100">
       <div class="modal-header">
@@ -104,7 +104,8 @@
 </div>
 
 
-        
+{% comment %} Banner Slider {% endcomment %}
+
 <div
   id="carouselExampleControls"
   class="carousel slide"
@@ -160,7 +161,12 @@
   </a>
 </div>
 <!-- End Banner Slider -->
+
+
+
 {% endblock banner_slider %} <br>
+
+
 {% block livesale %}
 <!-- Live Sale Section -->
 <!-- Live Sale Section -->
@@ -178,8 +184,12 @@
   </div>
 </div>
 <!-- End Live Sale Section -->
+
+
+
+
 <div class="container">
-  <marquee behavior="scroll" direction="left" scrollamount="12"><h1 class="display-5 mt-3"><span class="mar">Bangladesh No 1 Online Pharmacy</span></h1> </marquee>
+  <marquee behavior="scroll" direction="left" scrollamount="12"><h1 class="mt-3"><span class="mar">Bangladesh No 1 Online Pharmacy</span></h1> </marquee>
 </div>
 
 {% if request.user.is_superuser %}
@@ -188,8 +198,12 @@
 </div>
 {% endif %}
 
-<!-- End Live Sale Section -->
-{% endblock livesale %} {% block main-content %}
+
+{% endblock livesale %}  <br>
+
+
+
+{% block main-content %}
 <div class="container my-5">
   <div class="row">
     <div class="col-sm-4">
@@ -234,7 +248,7 @@
 
 
 <!-- 1st Product Slider -->
-{% if covid %}
+{% if covid %}  
 <div class="mx-3" data-aos="fade-up">
   <h1 class="mb-1 mt-3 ml-3 title text-center">Covid 19 Special</h1>
 

@@ -1,44 +1,58 @@
-{% extends 'app/base.html' %} {% load static %} {% block title %}Search{%
-endblock title %} {% block main-content %}
-
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Search{%endblock title %} <br />
+{% block main-content %}
+<link rel="stylesheet" href="{% static 'app/css/home.css' %}" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <h1 class="text-center">Found Search Result</h1>
 
+<style>
+  .newhi {
+    background: red;
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    border-radius: 20px 0px 100px 0px;
+    color: white;
+    font-size: 15px;
+    top: 1.7rem;
+  }
+  .title {
+    color: black;
+  }
+</style>
+
 <hr />
-{% if product %}
+{% if product %} <br />
+{% for pro in product %}
 <div class="container text-center">
-  {% for pro in product %}
-
-  <img
-    src="{{pro.product_image.url}}"
-    alt=""
-    width="400"
-    height="400"
-    style="object-fit: cover"
-  />
-
-  <h4 class="mt-2">Product Title: {{pro.title}}</h4>
-  <p>{{pro.description}}</p>
-  <br />
-  <h4>
-    Taka . {{pro.discounted_price}}
-    <small class="fw-light text-decoration-line-through"
-      >{{pro.selling_price}}</small
-    >
-  </h4>
-  <br />
-
-  <form action="/add-to-cart" class="d-inline">
-    <input type="hidden" name="prod_id" value="{{pro.id}}" id="prod_id" />
-    <button type="submit" class="btn btn-primary shadow px-5 py-2">
-      Add To Cart
-    </button>
-  </form>
-  {% endfor %}
+  <a href="{% url 'product-detail' pro.id %}" class="btn">
+    <div class="item">
+      <div class="newhi">
+        <p class="mt-4 me-3">10% Sale</p>
+      </div>
+      <img
+        src="{{pro.product_image.url}}"
+        alt=""
+        height="200px"
+        style="object-fit: cover"
+      />
+      <h6 class="fw-bolder">{{pro.title}}</h6>
+      <h6 class="text-decoration-line-through text-warning">
+        ৳ {{pro.selling_price}}
+      </h6>
+      <h6 class="mt-3 text-danger">৳ {{pro.discounted_price}}</h6>
+      <button class="btn1">Shop Now</button>
+    </div>
+  </a>
 </div>
+{% endfor %} <br />
 {% else %}
 <div style="height: 265px">
   <h1 class="text-center text-danger" style="margin-top: 10%">
     Not Found Anything
   </h1>
 </div>
-{% endif %} {% endblock main-content %}
+{% endif %} <br />
+
+{% endblock main-content %}

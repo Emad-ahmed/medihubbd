@@ -10,9 +10,9 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from mediapp.models import Customer, UploadPrescription, DoctorInfo
 import requests
+
 # def home(request):
 #  return render(request, 'app/home.html')
 
@@ -80,9 +80,7 @@ def add_to_cart(request):
     product_id = request.GET.get('prod_id')
 
     product = Product.objects.get(id=product_id)
-
     Cart(user=user, product=product).save()
-
     return redirect('/cart')
 
 
@@ -201,7 +199,6 @@ def address(request):
 
 @login_required
 def orders(request):
-
     op = OrderPlaced.objects.filter(user=request.user)
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
@@ -259,7 +256,6 @@ def covid(request):
 def devices(request):
 
     devices = Product.objects.filter(category='D')
-
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
         return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
@@ -431,9 +427,9 @@ class PasswordChangeView(View):
 
 
 def searchhresult(request):
-    search = request.GET.get('search')
-    n = search.capitalize()
-    allpro = Product.objects.filter(title=n)
+    search = request.POST.get('search')
+
+    allpro = Product.objects.filter(title=search)
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
         return render(request, 'app/search.html', {'product': allpro, 'tcart': cart})

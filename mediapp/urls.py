@@ -9,6 +9,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from . forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
+
+
 urlpatterns = [
     # path('', views.home),
     path('', views.ProductView.as_view(), name='home'),
