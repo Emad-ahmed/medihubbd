@@ -20,33 +20,53 @@
   .title {
     color: black;
   }
+
+  .card {
+    height:95%;
+    width:95%;
+  }
+
+  .card img{
+    height:50%;
+    width:50%;
+  }
+  .mybtn{
+    display:block;
+    background: #000;
+    position: fixed-bottom;
+    color:white;
+   
+  }
 </style>
 
 <hr />
 {% if product %} <br />
-{% for pro in product %}
-<div class="container text-center">
-  <a href="{% url 'product-detail' pro.id %}" class="btn">
-    <div class="item">
-      <div class="newhi">
-        <p class="mt-4 me-3">10% Sale</p>
-      </div>
-      <img
-        src="{{pro.product_image.url}}"
-        alt=""
-        height="200px"
-        style="object-fit: cover"
-      />
-      <h6 class="fw-bolder">{{pro.title}}</h6>
-      <h6 class="text-decoration-line-through text-warning">
-        ৳ {{pro.selling_price}}
-      </h6>
-      <h6 class="mt-3 text-danger">৳ {{pro.discounted_price}}</h6>
-      <button class="btn1">Shop Now</button>
+
+<div class="container">
+  <div class="row align-content-center">
+    
+    {% for pro in product %}
+    <div class="col-lg-3 mx-4">
+      <a href="{% url 'product-detail' pro.id %}" class="btn">
+        <div class="card text-center" style="width: 20rem;">
+          <img src="{{pro.product_image.url}}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{pro.title}}</h5>
+            <p class="card-text">
+              <h6 class="text-decoration-line-through text-warning">
+                ৳ {{pro.selling_price}}
+              </h6>
+              <h6 class="mt-3 text-danger">৳ {{pro.discounted_price}}</h6>
+            </p>
+            <a href="{% url 'product-detail' pro.id %}" class="btn mybtn">Shop Now</a>
+          </div>
+        </div>
+      </a>
     </div>
-  </a>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %} <br />
+
 {% else %}
 <div style="height: 265px">
   <h1 class="text-center text-danger" style="margin-top: 10%">

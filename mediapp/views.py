@@ -429,7 +429,8 @@ class PasswordChangeView(View):
 def searchhresult(request):
     search = request.POST.get('search')
 
-    allpro = Product.objects.filter(title=search)
+    allpro = Product.objects.filter(
+        title=search) or Product.objects.filter(brand=search)
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
         return render(request, 'app/search.html', {'product': allpro, 'tcart': cart})
