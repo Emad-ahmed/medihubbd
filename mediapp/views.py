@@ -189,6 +189,7 @@ def remove_cart(request):
 
 
 def buy_now(request, id):
+    request.session['myproductid'] = id
     myproduct = Product.objects.get(id=id)
     price = myproduct.discounted_price
     total_price = price+70
@@ -391,6 +392,24 @@ def payment_done(request):
             OrderPlaced(user=user, customer=customer,
                         product=c.product, quantity=c.quantity).save()
             c.delete()
+
+        return redirect('orders')
+    except:
+        messages.success(request, "Please Add Your Profile For Place Order")
+        return redirect('profile')
+
+
+@login_required
+def buy_payment_done(request):
+    try:
+        n = request.session.get('myproductid')
+        user = request.user
+        custid = request.GET.get('custid')
+        customer = Customer.objects.get(id=custid)
+        product = Product.objects.get(id=n)
+
+        OrderPlaced(user=user, customer=customer,
+                    product=product, quantity=1).save()
 
         return redirect('orders')
     except:
