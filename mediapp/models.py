@@ -119,3 +119,9 @@ class DoctorInfo(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class BkashPayment(models.Model):
+    candidate_name = models.CharField(max_length=40)
+    candidate_phone = models.IntegerField()
+    payment_amount = models.IntegerField()

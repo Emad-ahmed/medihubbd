@@ -2,18 +2,192 @@
 {% load static %} <br />
 {% block title %}{{doctorallinfo.name}}{% endblock title %} <br />
 {% block main-content %}
+<link rel="stylesheet" href="{% static 'doctor_details.css' %}" />
+<style>
+  .card {
+    max-width: 400px;
+    margin: auto;
+  }
+  .imgview img {
+    width: 10rem;
+    height: 10rem;
+  }
+  .btn {
+    margin-top: 1rem;
+    background: #000;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .modal-dialog
+  {
+    background: #E63582;
+  }
+  .modal-content
+  {
+    background: #E63582;
+  }
 
-<div class="row">
-  <div class="col-lg-1">
-    {% if doctorallinfo.doctor_img %}
-    <img src="{{doctorallinfo.doctor_img.url}}" alt="" />
-    {% endif %}
-  </div>
-  <div class="col-lg-11 text-center">
-    <h1 class="mt-3 mb-3">{{doctorallinfo.name}}</h1>
-    <p>{{doctorallinfo.qualification}}</p>
-    <p>{{doctorallinfo.specialist}}</p>
+  .bkash-border {
+    background-color: #E63582;
+    width: 28rem;
+    height: 28rem;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .sub-border {
+    width: 26rem;
+    position: absolute;
+    margin-top: 4%;
+    margin-left: 4%;
+    height: 10rem;
+    background-color: #E63582;
+    box-shadow: 2px 2px 2px 2px;
+    border-radius: 10px 10px 10px 0px;
+  }
+
+  .sub-border h6 {
+    margin-top: 5%;
+    margin-bottom: 8%;
+    color: white;
+  }
+
+  .my_payment_img {
+    position: absolute;
+    width: 35rem;
+    left: 29%;
+    height: 7rem;
+    object-fit: cover;
+  }
+
+  .bkash-form {
+    margin-top: 8%;
+  }
+
+  .new-input {
+    border-radius: 5px 5px 0px 5px;
+    padding: 4px;
+  }
+
+  .label1 {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .form-check-label {
+    color: white;
+  }
+
+  .bbtn{
+    background: #E6A8C1;
+  }
+</style>
+
+
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="exampleModalLabel">Bkash</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body mx-0">  {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{ message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %} {% if form.errors %}
+        <!--error-->
+        {% for field in form %}
+        <!--error-->
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+          <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %} {% endfor %} {% endif %}
+          <div class="bkash-border">
+            <div class="sub-border">
+              <h6 class="mt-35">Merchant: Medihub</h4>
+                <h6>Invoice no: 01312145432</h4>
+              <h6 class="mt-2"></h4>
+              <h6 class="mt-3 mb-5">Amount: BDT 500</h4>
+              <form action="" class="bkash-form" method ="POST">
+                {% csrf_token %}
+                <label for=""  class="mb-2 label1">Your Bkash Account Number</label> <br>
+                <input type="number"  / class="new-input" name="bkashnumber" placeholder="+88">
+        
+                <div class="mb-3 form-check mt-3">
+                  <input type="checkbox" c()
+                  lass="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">I agree the <a href="" class="text-white">terms and condition</a></label>
+                </div>
+        
+               
+        
+                  <button type="submit" class="btn bbtn">PROCEED</button>
+                  <button type="submit" class="btn bbtn ms-3">Close</button>
+                  
+          
+                <div class="mt-3">
+                    <p class="text-white"><i class="fa fa-phone" aria-hidden="true"></i> 16247</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      
+    </div>
   </div>
 </div>
 
+<div class="card">
+  <div class="row">
+    <div class="col-lg-12 text-center imgview">
+      {% if doctorallinfo.doctor_img %}
+      <img src="{{doctorallinfo.doctor_img.url}}" alt="" />
+      {% endif %}
+    </div>
+    <div class="col-lg-12 text-center">
+      <h1 class="mt-3 mb-3">{{doctorallinfo.name}}</h1>
+      <p>{{doctorallinfo.qualification}}</p>
+      <p>{{doctorallinfo.chamber}}</p>
+      <p>
+        <span style="font-weight: bold">Address: </span>
+        {{doctorallinfo.chamber_address}}
+      </p>
+      <p>
+        <span style="font-weight: bold">Contact No: </span
+        >{{doctorallinfo.serial_number}}
+      </p>
+      <p>{{doctorallinfo.visiting_hour}}</p>
+      <div class="wrap">
+        <a href="#" class="btn" type="button"
+      
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Buy Tickets</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock main-content %}

@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from mediapp.models import Customer, UploadPrescription, DoctorInfo
+from mediapp.models import Customer, UploadPrescription, DoctorInfo, BkashPayment
 import requests
 
 # def home(request):
@@ -443,9 +443,21 @@ def doctor(request):
     return render(request, 'app/doctor.html', {'doctor_info': doctor_info})
 
 
-def doctor_details(request, id):
+def doctor_details(request, id, **kwargs):
+    name = request.user.username
+    print(name)
     doctor_info = DoctorInfo.objects.get(id=id)
-
+    fee = doctor_info.new_patient_fee
+    fee = int(fee)
+    if request.method == "POST":
+        number = request.POST.get("bkashnumber")
+        print(number)
+        mynumber = int(number)
+        tikcet_buyer = BkashPayment(
+            candidate_name=name, candidate_phone=mynumber, payment_amount=fee)
+        tikcet_buyer.save()
+    else:
+        return render(request, 'app/doctor_details.html', {'doctorallinfo': doctor_info})
     return render(request, 'app/doctor_details.html', {'doctorallinfo': doctor_info})
 
 

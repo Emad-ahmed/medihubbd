@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import(Customer,
                     Product,
                     Cart,
-                    OrderPlaced, UploadPrescription, DoctorInfo)
+                    OrderPlaced, UploadPrescription, DoctorInfo, BkashPayment)
 # Register your models here.
 
 
@@ -37,3 +37,8 @@ class UploadModelAdmin(admin.ModelAdmin):
 @admin.register(DoctorInfo)
 class DoctorInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'specialist', 'chamber_address', 'city']
+
+
+@admin.register(BkashPayment)
+class BkashPaymentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'candidate_name', 'candidate_name', 'payment_amount']
