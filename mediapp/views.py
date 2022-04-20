@@ -1,10 +1,10 @@
 from typing import Counter
 from django import forms
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 from .models import Customer, Product, Cart, OrderPlaced
-from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, UploadPrescriptionForm, AddProductForm
+from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, MyPasswordChangeForm, UploadPrescriptionForm, AddProductForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
@@ -407,11 +407,19 @@ class ProfileView(View):
 
 class PasswordChangeView(View):
     def get(self, request):
-        if request.user.is_authenticated:
-            cart = Cart.objects.filter(user=request.user)
-            return render(request, 'app/passwordchange.html', {'tcart': cart})
+        form = MyPasswordChangeForm(user=request.user)
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/passwordchange.html', {'tcart': cart, 'form': form})
+
+    def post(self, request):
+        cart = Cart.objects.filter(user=request.user)
+        form = MyPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("passwordchangedone")
         else:
-            return render(request, 'app/passwordchange.html')
+            messages.error(request, "Please Enter Valid Password")
+            return render(request, 'app/passwordchange.html', {'tcart': cart, 'form': form})
 
 
 def searchhresult(request):

@@ -338,6 +338,10 @@ ul.list-links li {
     color: #fff;
 }
 
+.follow-icons li a {
+    color: tomato;
+}
+
 .follow-icons li span {
     padding-right: 6px;
 }
