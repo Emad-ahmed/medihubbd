@@ -31,15 +31,18 @@ urlpatterns = [
 
     path('covid/', views.covid, name='covid'),
     path('coviddata/<slug:data>', views.covid, name='coviddata'),
-    path('mobile/', views.mobile, name='mobile'),
+
     path('covidinformation/', views.covidinformation, name='covidinformation'),
-    path('mobile/', views.mobile, name='mobiledata'),
+
     path('Herbal/', views.Herbal, name='Herbal'),
     path('BabyMom/', views.BabyMom, name='BabyMom'),
     path('Nutrition/', views.Nutrition, name='Nutrition'),
+    path('PersonalCare/', views.PersonalCare, name='PersonalCare'),
+    path('otc/', views.OTC, name='otc'),
+    path('Prescription/', views.Prescription, name='Prescription'),
     path('add_doctor/', views.DoctorADD.as_view(), name='add_doctor'),
     path('doctor_details/<int:id>/', views.doctor_details, name='doctor_details'),
-    path('laptob/<slug:data>', views.laptob, name='laptobdata'),
+
     path('checkout/', views.checkout, name='checkout'),
     path('paymentdone/', views.payment_done, name='paymentdone'),
     path('buypaymentdone/', views.buy_payment_done, name='buypaymentdone'),

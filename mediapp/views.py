@@ -19,25 +19,21 @@ import requests
 
 class ProductView(View):
     def get(self, request):
-        myuser = request.user
-        mainuser = Customer.objects.filter(user=myuser)
-        if mainuser:
-            covid = Product.objects.filter(category='C')
-            devices = Product.objects.filter(category='D')[:4]
-            herbal = Product.objects.filter(category='H')
-            babymom = Product.objects.filter(category='BM')
-            nudrinks = Product.objects.filter(category='ND')
-            Persoal = Product.objects.filter(category='PC')
-            otc = Product.objects.filter(category='OM')
-            pm = Product.objects.filter(category='PM')
-            fm = UploadPrescriptionForm()
-            if request.user.is_authenticated:
-                cart = Cart.objects.filter(user=request.user)
-                return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
-            else:
-                return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, "form": fm})
+
+        covid = Product.objects.filter(category='C')
+        devices = Product.objects.filter(category='D')[:4]
+        herbal = Product.objects.filter(category='H')
+        babymom = Product.objects.filter(category='BM')
+        nudrinks = Product.objects.filter(category='ND')
+        Persoal = Product.objects.filter(category='PC')
+        otc = Product.objects.filter(category='OM')
+        pm = Product.objects.filter(category='PM')
+        fm = UploadPrescriptionForm()
+        if request.user.is_authenticated:
+            cart = Cart.objects.filter(user=request.user)
+            return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
         else:
-            return redirect('profile')
+            return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, "form": fm})
 
     def post(self, request):
         covid = Product.objects.filter(category='C')
@@ -216,44 +212,6 @@ def orders(request):
     return render(request, 'app/orders.html', {'order_placed': op, 'tcart': cart, })
 
 
-def mobile(request, data=None):
-
-    if data == None:
-        mobiles = Product.objects.filter(category='M')
-    elif data == 'Redmi' or data == 'Samsung':
-        mobiles = Product.objects.filter(category="M").filter(brand=data)
-    elif data == "below":
-        mobiles = Product.objects.filter(
-            category="M").filter(discounted_price__lt=10000)
-    elif data == "above":
-        mobiles = Product.objects.filter(
-            category="M").filter(discounted_price__gt=10000)
-
-    if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/mobile.html', {'mobiles': mobiles, 'tcart': cart})
-
-    return render(request, 'app/mobile.html', {'mobiles': mobiles})
-
-
-def laptob(request, data=None):
-
-    if data == None:
-        laptob = Product.objects.filter(category='L')
-    elif data == 'HP' or data == 'MAC' or data == "Lenevo":
-        laptob = Product.objects.filter(category="L").filter(brand=data)
-    elif data == "below":
-        laptob = Product.objects.filter(
-            category="L").filter(discounted_price__lt=40000)
-    elif data == "above":
-        laptob = Product.objects.filter(
-            category="L").filter(discounted_price__gt=40000)
-    if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/laptob.html', {'laptob': laptob, 'tcart': cart})
-    return render(request, 'app/laptob.html', {'laptob': laptob})
-
-
 def covid(request):
 
     covid = Product.objects.filter(category='C')
@@ -303,34 +261,34 @@ def Nutrition(request):
     return render(request, 'app/Nutrition.html', {'Nutrition': Nutrition})
 
 
-def PersonalCare(request, data=None):
+def PersonalCare(request):
 
-    devices = Product.objects.filter(category='D')
+    personal = Product.objects.filter(category='PC')
 
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
-    return render(request, 'app/devices.html', {'devices': devices})
+        return render(request, 'app/personalcare.html', {'personal': personal, 'tcart': cart})
+    return render(request, 'app/personalcare.html', {'personal': personal})
 
 
 def OTC(request):
 
-    devices = Product.objects.filter(category='D')
+    otc = Product.objects.filter(category='OM')
 
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
-    return render(request, 'app/devices.html', {'devices': devices})
+        return render(request, 'app/otc.html', {'otc': otc, 'tcart': cart})
+    return render(request, 'app/otc.html', {'otc': otc})
 
 
 def Prescription(request):
 
-    devices = Product.objects.filter(category='D')
+    pres = Product.objects.filter(category='PM')
 
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-        return render(request, 'app/devices.html', {'devices': devices, 'tcart': cart})
-    return render(request, 'app/devices.html', {'devices': devices})
+        return render(request, 'app/pres.html', {'pres': pres, 'tcart': cart})
+    return render(request, 'app/pres.html', {'pres': pres})
 
 
 # def login(request):

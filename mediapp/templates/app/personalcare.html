@@ -1,0 +1,113 @@
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Nutrition{%endblock title %} <br />
+{% block main-content %}
+
+<style>
+  body {
+    background: white;
+  }
+  .container {
+    color: black;
+  }
+
+  .card {
+    background: #c4c4c4;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid tomato;
+  }
+
+  .card img {
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+    background: #c4c4c4;
+  }
+
+  .newhi {
+    background: red;
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    border-radius: 20px 0px 100px 0px;
+    color: white;
+    font-size: 15px;
+  }
+
+  .card-body {
+    background: #f1f1f1;
+    border-radius: 20px 20px 20px 20px;
+  }
+
+  .card-text {
+    color: #e53d3d;
+    font-size: 16px;
+    margin-top: 0.8rem;
+  }
+  .card-title {
+    color: #000000;
+    margin-top: 1rem;
+  }
+
+  .spantext {
+    color: #606160;
+  }
+
+  .prodbtn {
+    text-decoration: none;
+  }
+  .shopbtn {
+    margin-top: 1.4rem;
+  }
+  .shopbtn .btn {
+    width: 8rem;
+    background: #000000;
+    color: white;
+    padding: 10px;
+    font-weight: bolder;
+    border: 2px solid grey;
+    border-radius: 10px 10px;
+  }
+</style>
+
+<div class="container-fluid my-5">
+  <h1 class="mb-5 text-center">Personal Care</h1>
+  <div class="row">
+    {% for product in personal %}
+    <div class="col-lg-4">
+      <a href="{% url 'product-detail' product.id %}" class="prodbtn">
+        <div class="card mb-5" style="width: 25rem">
+          <div class="newhi">
+            <p class="mt-4 ms-1">10% Sale</p>
+          </div>
+          <div class="text-center">
+            <img
+              src="{{product.product_image.url}}"
+              class="card-img-top"
+              alt="..."
+            />
+          </div>
+          <div class="card-body">
+            <h6 class="card-title fw-bold">{{product.title}}</h6>
+
+            <div>
+              <p class="card-text">
+                Taka. {{product.discounted_price}}
+                <span class="text-decoration-line-through ms-3 spantext"
+                  >Taka. {{product.selling_price}}</span
+                >
+              </p>
+            </div>
+            <div class="shopbtn">
+              <a href="{% url 'product-detail' product.id %}" class="btn"
+                >Shop Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main-content %}
