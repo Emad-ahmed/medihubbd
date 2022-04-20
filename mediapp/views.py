@@ -185,13 +185,16 @@ def remove_cart(request):
 
 
 def buy_now(request, id):
-    request.session['myproductid'] = id
-    myproduct = Product.objects.get(id=id)
-    price = myproduct.discounted_price
-    total_price = price+70
-    user = request.user
-    add = Customer.objects.filter(user=user)
-    return render(request, 'app/buynow.html', {'price': total_price, 'add': add})
+    if request.user:
+        request.session['myproductid'] = id
+        myproduct = Product.objects.get(id=id)
+        price = myproduct.discounted_price
+        total_price = price+70
+        user = request.user
+        add = Customer.objects.filter(user=user)
+        return render(request, 'app/buynow.html', {'price': total_price, 'add': add})
+    else:
+        return redirect("login")
 
 
 @login_required
