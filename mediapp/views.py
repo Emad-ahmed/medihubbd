@@ -418,7 +418,7 @@ class PasswordChangeView(View):
         form = MyPasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("passwordchangedone")
+            return redirect("login")
         else:
             messages.error(request, "Please Enter Valid Password")
             return render(request, 'app/passwordchange.html', {'tcart': cart, 'form': form})
