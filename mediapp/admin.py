@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import(Customer,
                     Product,
                     Cart,
-                    OrderPlaced, UploadPrescription, DoctorInfo, BkashPayment)
+                    OrderPlaced, UploadPrescription, DoctorInfo, BkashPayment, NewTable)
 # Register your models here.
 
 
@@ -42,3 +42,8 @@ class DoctorInfoAdmin(admin.ModelAdmin):
 @admin.register(BkashPayment)
 class BkashPaymentAdmin(admin.ModelAdmin):
     list_display = ['id', 'candidate_name', 'candidate_name', 'payment_amount']
+
+
+@admin.register(NewTable)
+class NewAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']

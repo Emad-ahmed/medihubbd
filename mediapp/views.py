@@ -19,16 +19,17 @@ import requests
 
 class ProductView(View):
     def get(self, request):
-
         covid = Product.objects.filter(category='C')
-        devices = Product.objects.filter(category='D')[:4]
+        devices = Product.objects.filter(category='D')
         herbal = Product.objects.filter(category='H')
         babymom = Product.objects.filter(category='BM')
         nudrinks = Product.objects.filter(category='ND')
         Persoal = Product.objects.filter(category='PC')
         otc = Product.objects.filter(category='OM')
         pm = Product.objects.filter(category='PM')
+
         fm = UploadPrescriptionForm()
+
         if request.user.is_authenticated:
             cart = Cart.objects.filter(user=request.user)
             return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
@@ -44,17 +45,21 @@ class ProductView(View):
         Persoal = Product.objects.filter(category='PC')
         otc = Product.objects.filter(category='OM')
         pm = Product.objects.filter(category='PM')
+
         fm = UploadPrescriptionForm()
+
         prescription_image = request.FILES['prescription_image']
 
         fm = UploadPrescription(
             newuser=request.user,  prescription_image=prescription_image)
         fm.save()
+
         if request.user.is_authenticated:
             cart = Cart.objects.filter(user=request.user)
             return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart, "form": fm})
         else:
             return render(request, 'app/home.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, "form": fm})
+
 
 # def product_detail(request):
 #     return render(request, 'app/productdetail.html')

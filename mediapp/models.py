@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models.base import Model
 
+
 # Create your models here.
 STATE_CHOICES = (
     ('Dhaka', 'Dhaka'),
@@ -47,7 +48,7 @@ CATEGORY_CHOICES = (
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    cattype = models.CharField(max_length=100, default="Tablet")
+    cattype = models.CharField(max_length=100, default="")
     selling_price = models.FloatField()
     discounted_price = models.FloatField()
     description = models.TextField()
@@ -66,7 +67,7 @@ class Cart(models.Model):
     quantity = models.PositiveBigIntegerField(default=1)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.product)
 
     @property
     def total_cost(self):
@@ -98,6 +99,7 @@ class OrderPlaced(models.Model):
 
 class UploadPrescription(models.Model):
     newuser = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
     prescription_image = models.ImageField(upload_to='presimg')
 
 
@@ -125,3 +127,8 @@ class BkashPayment(models.Model):
     candidate_name = models.CharField(max_length=40)
     candidate_phone = models.IntegerField()
     payment_amount = models.IntegerField()
+
+
+class NewTable(models.Model):
+    name = models.CharField(max_length=100)
+    mobile = models.IntegerField()
