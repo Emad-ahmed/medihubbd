@@ -356,9 +356,11 @@ def payment_done(request):
         for c in cart:
             OrderPlaced(user=user, customer=customer,
                         product=c.product, quantity=c.quantity).save()
+
             c.delete()
 
         return redirect('orders')
+
     except:
         messages.success(request, "Please Add Your Profile For Place Order")
         return redirect('profile')
@@ -505,3 +507,8 @@ class Addproduct(View):
         if fm.is_valid():
             fm.save()
         return render(request, 'app/productadd.html', {'form': fm})
+
+
+class AmbulanceView(View):
+    def get(self, request):
+        return render(request, 'app/ambulance.html')

@@ -10,6 +10,88 @@
   .container {
     color: black;
   }
+
+  .card {
+    max-width: 400px;
+    margin: auto;
+  }
+  .imgview img {
+    width: 10rem;
+    height: 10rem;
+  }
+  .bkashbtn {
+    margin-top: 1rem;
+    background: #e63582;
+    color: white;
+    padding: 7px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+  .modal-dialog {
+    background: #e63582;
+  }
+  .modal-content {
+    background: #e63582;
+  }
+
+  .bkash-border {
+    background-color: #e63582;
+    width: 28rem;
+    height: 28rem;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .sub-border {
+    width: 26rem;
+    position: absolute;
+    margin-top: 4%;
+    margin-left: 4%;
+    height: 10rem;
+    background-color: #e63582;
+    box-shadow: 2px 2px 2px 2px;
+    border-radius: 10px 10px 10px 0px;
+  }
+
+  .sub-border h6 {
+    margin-top: 5%;
+    margin-bottom: 8%;
+    color: white;
+  }
+
+  .my_payment_img {
+    position: absolute;
+    width: 35rem;
+    left: 29%;
+    height: 7rem;
+    object-fit: cover;
+  }
+
+  .bkash-form {
+    margin-top: 8%;
+  }
+
+  .new-input {
+    border-radius: 5px 5px 0px 5px;
+    padding: 4px;
+  }
+
+  .label1 {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .form-check-label {
+    color: white;
+  }
+
+  .bbtn {
+    background: #e6a8c1;
+  }
 </style>
 
 <div class="container">
@@ -56,11 +138,12 @@
             name="custid"
             id="custadd{{forloop.counter}}"
           />
-          <label class="form-check-label fw-bold" for="">
+          <label class="form-check-label fw-bold text-dark" for="">
             Address: {{forloop.counter}}
           </label>
         </div>
         {% endfor %}
+
         <div class="text-end">
           <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">
             Continue

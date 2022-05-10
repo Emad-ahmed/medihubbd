@@ -129,6 +129,8 @@ class BkashPayment(models.Model):
     payment_amount = models.IntegerField()
 
 
-class NewTable(models.Model):
-    name = models.CharField(max_length=100)
-    mobile = models.IntegerField()
+class BkashProductPayment(models.Model):
+    prodcutview = models.ForeignKey(OrderPlaced, on_delete=models.CASCADE)
+    candidate_name = models.CharField(max_length=40)
+    candidate_phone = models.IntegerField()
+    payment_amount = models.IntegerField()

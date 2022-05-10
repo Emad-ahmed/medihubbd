@@ -28,6 +28,7 @@ urlpatterns = [
     path('address/', views.address, name='address'),
     path('orders/', views.orders, name='orders'),
     path('devices/', views.devices, name='devices'),
+    path('ambulance/', views.AmbulanceView.as_view(), name='ambulance'),
 
     path('covid/', views.covid, name='covid'),
     path('coviddata/<slug:data>', views.covid, name='coviddata'),
