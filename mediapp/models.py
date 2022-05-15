@@ -130,7 +130,13 @@ class BkashPayment(models.Model):
 
 
 class BkashProductPayment(models.Model):
-    prodcutview = models.ForeignKey(OrderPlaced, on_delete=models.CASCADE)
+
     candidate_name = models.CharField(max_length=40)
     candidate_phone = models.IntegerField()
     payment_amount = models.IntegerField()
+
+
+class Ambulanceadd(models.Model):
+    service_name = models.CharField(max_length=100)
+    service_phone = models.IntegerField()
+    state = models.CharField(choices=STATE_CHOICES, max_length=50)

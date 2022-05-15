@@ -1,5 +1,5 @@
 from django.forms import widgets
-from mediapp.models import Customer, DoctorInfo, Product
+from mediapp.models import Customer, DoctorInfo, Product,  Ambulanceadd
 from typing import Set
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UsernameField, PasswordChangeForm, PasswordResetForm, SetPasswordForm
@@ -115,5 +115,18 @@ class AddProductForm(forms.ModelForm):
             'brand': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'product_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+
+        }
+
+
+class AddAmbulaceForm(forms.ModelForm):
+    class Meta:
+        model = Ambulanceadd
+        fields = ['service_name', 'service_phone', 'state']
+
+        widgets = {
+            'service_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'service_phone': forms.NumberInput(attrs={'class': 'form-control'}),
+            'state': forms.Select(attrs={'class': 'form-control'}),
 
         }

@@ -3,5 +3,39 @@
 {% block title %}Ambulance{%endblock title %} <br />
 {% block main-content %}
 
+<style>
+  .ama a {
+    float: right;
+    background: aqua;
+    padding: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    color: black;
+  }
+</style>
+
+<div class="ama">
+  <a href="{% url 'addambulance' %}">Add Ambulance</a>
+</div>
 <h1 class="text-center">Ambulance</h1>
+
+<div class="container">
+  <div class="row">
+    {% for view in viewam %}
+    <div class="col-lg-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h4>Service: {{view.service_name}}</h4>
+          <p>Mobile Number {{view.service_phone}}</p>
+          <p>State: {{view.state}}</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container"></div>
 {% endblock main-content %}

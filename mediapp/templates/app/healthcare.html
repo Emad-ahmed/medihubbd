@@ -1,0 +1,182 @@
+{% extends 'app/base.html' %} <br />
+{% load static %} <br />
+{% block title %}Health care{%endblock title %} <br />
+{% block main-content %}
+
+<style>
+  body {
+    background: white;
+  }
+
+  .container {
+    color: black;
+  }
+
+  .card {
+    background: #c4c4c4;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid tomato;
+  }
+
+  .card img {
+    width: 16rem;
+    height: 15rem;
+    object-fit: cover;
+    background: #c4c4c4;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid tomato;
+  }
+
+  .newhi {
+    background: red;
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    border-radius: 20px 0px 100px 0px;
+    color: white;
+    font-size: 15px;
+  }
+
+  .card-body {
+    background: #f1f1f1;
+    border-radius: 20px 20px 20px 20px;
+  }
+
+  .card-text {
+    color: #e53d3d;
+    font-size: 16px;
+    margin-top: 0.8rem;
+  }
+  .card-title {
+    color: #000000;
+    margin-top: 1rem;
+  }
+
+  .spantext {
+    color: #606160;
+  }
+
+  .prodbtn {
+    text-decoration: none;
+  }
+  .shopbtn {
+    margin-top: 1.4rem;
+  }
+  .shopbtn .btn {
+    width: 8rem;
+    background: #000000;
+    color: white;
+    padding: 10px;
+    font-weight: bolder;
+    border: 2px solid grey;
+    border-radius: 10px 10px;
+  }
+  .row h1
+  {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h1>Covid</h1>
+        {% for c in covid  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{c.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{c.}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{c.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{c.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' c.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+        <h1>Devices</h1>
+        {% for d in devices  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{d.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{c.}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{d.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{d.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' d.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+        <h1>Baby And Mom</h1>
+        {% for b in babymom  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{b.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{c.}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{b.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{b.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' b.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+        <h1>Nutrition  Drinks</h1>
+        {% for n in nudrinks  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{n.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{n.title}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{n.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{n.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' n.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+        <h1>Personal</h1>
+        {% for p in Persoal  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{p.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{p.title}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{p.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{p.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' p.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+        <h1>Prescription Medicine</h1>
+        {% for pp in pm  %}
+        <div class="col-lg-3">
+            <div class="card me-5" style="width: 16rem;">
+                <img src="{{pp.product_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{pp.title}}</h5>
+                  <h6 class="text-decoration-line-through">৳ {{pp.selling_price}}</h6>
+                  <h6 class="mt-3 text-danger"
+                    >৳ {{pp.discounted_price}}</h6
+                  >
+                  <a href="{% url 'product-detail' pp.id %}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    
+    {% endblock main-content %}</div>

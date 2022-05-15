@@ -4,13 +4,13 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 from .models import Customer, Product, Cart, OrderPlaced
-from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, MyPasswordChangeForm, UploadPrescriptionForm, AddProductForm
+from . forms import CustomerRegistrationForm, CustomerProfileForm, DoctorInfoForm, MyPasswordChangeForm, UploadPrescriptionForm, AddProductForm, AddAmbulaceForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from mediapp.models import Customer, UploadPrescription, DoctorInfo, BkashPayment
+from mediapp.models import Customer, UploadPrescription, DoctorInfo, BkashPayment, BkashProductPayment, Ambulanceadd
 import requests
 
 # def home(request):
@@ -366,6 +366,19 @@ def payment_done(request):
         return redirect('profile')
 
 
+def addbkash(request,):
+    if request.method == "POST":
+        candidate_name = request.user.username
+        candidate_phone = request.POST.get("bkashnumber")
+        payment_amount = 300
+        n = BkashProductPayment(candidate_name=candidate_name,
+                                candidate_phone=candidate_phone, payment_amount=payment_amount)
+        n.save()
+        messages.success(
+            request, "Successfully Payment Done Continue To place Order")
+        return redirect("/checkout")
+
+
 @login_required
 def buy_payment_done(request):
     try:
@@ -463,6 +476,7 @@ def doctor_details(request, id, **kwargs):
         tikcet_buyer = BkashPayment(
             candidate_name=name, candidate_phone=mynumber, payment_amount=fee)
         tikcet_buyer.save()
+        messages.success(request, "Buy Ticket Successfully")
     else:
         return render(request, 'app/doctor_details.html', {'doctorallinfo': doctor_info})
     return render(request, 'app/doctor_details.html', {'doctorallinfo': doctor_info})
@@ -511,4 +525,34 @@ class Addproduct(View):
 
 class AmbulanceView(View):
     def get(self, request):
-        return render(request, 'app/ambulance.html')
+        viewam = Ambulanceadd.objects.all()
+        return render(request, 'app/ambulance.html', {'viewam': viewam})
+
+
+class addAmbulanceView(View):
+    def get(self, request):
+        fm = AddAmbulaceForm()
+        return render(request, 'app/addam.html', {'form': fm})
+
+    def post(self, request):
+        fm = AddAmbulaceForm(request.POST, request.FILES)
+        if fm.is_valid():
+            fm.save()
+            return redirect("/ambulance")
+        return render(request, 'app/addam.html', {'form': fm})
+
+
+def Healtcare(request):
+    covid = Product.objects.filter(category='C')[:5]
+    devices = Product.objects.filter(category='D')[:5]
+    herbal = Product.objects.filter(category='H')[:5]
+    babymom = Product.objects.filter(category='BM')[:5]
+    nudrinks = Product.objects.filter(category='ND')[:5]
+    Persoal = Product.objects.filter(category='PC')[:5]
+    otc = Product.objects.filter(category='OM')[:5]
+    pm = Product.objects.filter(category='PM')[:5]
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart})
+
+    return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart})

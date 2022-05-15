@@ -29,7 +29,7 @@ urlpatterns = [
     path('orders/', views.orders, name='orders'),
     path('devices/', views.devices, name='devices'),
     path('ambulance/', views.AmbulanceView.as_view(), name='ambulance'),
-
+    path('addambulance/', views.addAmbulanceView.as_view(), name='addambulance'),
     path('covid/', views.covid, name='covid'),
     path('coviddata/<slug:data>', views.covid, name='coviddata'),
 
@@ -43,8 +43,9 @@ urlpatterns = [
     path('Prescription/', views.Prescription, name='Prescription'),
     path('add_doctor/', views.DoctorADD.as_view(), name='add_doctor'),
     path('doctor_details/<int:id>/', views.doctor_details, name='doctor_details'),
-
+    path('addbkash', views.addbkash, name='addbkash'),
     path('checkout/', views.checkout, name='checkout'),
+    path('Healtcare/', views.Healtcare, name='Healtcare'),
     path('paymentdone/', views.payment_done, name='paymentdone'),
     path('buypaymentdone/', views.buy_payment_done, name='buypaymentdone'),
     path('searchhresult', views.searchhresult, name='searchhresult'),
