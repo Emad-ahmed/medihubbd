@@ -11,18 +11,24 @@
     border-radius: 40px 20px 40px 20px;
     background: #ffffff;
   }
+  .card img {
+    height: 16rem;
+    width: 18rem;
+  }
 </style>
-<div class="container-fluid">
+<div class="container">
   <div class="float-end">
     <a href="{% url 'add_doctor' %}" class="btn btn-info border-1 border-dark"
       >Add Doctor Info</a
     >
   </div>
-  <h1 class="text-center text-dark mt-4 mb-4">Doctor Information</h1>
+  <h1 class="text-center text-dark mt-4 mb-4 border-bottom">
+    Doctor Information
+  </h1>
   <div class="row">
     {% for doctor in doctor_info %}
     <div class="col-lg-3">
-      <div class="card" style="width: 18rem; height: 25rem">
+      <div class="card" style="width: 18rem; height: 30rem">
         {% if doctor.doctor_img %}
         <img src="{{doctor.doctor_img.url}}" class="card-img-top" alt="..." />
         {% endif %}

@@ -10,15 +10,15 @@ from django.db.models.base import Model
 # Create your models here.
 STATE_CHOICES = (
     ('Dhaka', 'Dhaka'),
-    ('Dhaka Metro', 'Dhaka Metro'),
-    ('Dhaka Mirpur 10', 'Dhaka Mirpur 10'),
-    ('Dhaka Gulshan', 'Dhaka Gulshan'),
-    ('Dhaka Mirpur 12', 'Dhaka Mirpur 12'),
+    ('Khulna', 'Khulna'),
     ('Sylhet', 'Sylhet'),
-    ('Kanaigat', 'Kanaigat'),
-    ('Beanibazar', 'Beanibazar'),
-    ('Golapgonj', 'Golapgonj'),
-    ('Jkoigonj', 'Joigonj'),
+    ('Rajshahi', 'Rajshahi'),
+    ('Chittagong', 'Chittagong'),
+    ('Rangpur', 'Rangpur'),
+    ('Mymensingh', 'Mymensingh'),
+    ('Comilla', 'Comilla'),
+    ('Barishal', 'Barishal'),
+
 )
 
 
@@ -26,9 +26,9 @@ class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     locality = models.CharField(max_length=200)
-    city = models.CharField(max_length=50)
+    city = models.CharField(
+        max_length=50, choices=STATE_CHOICES)
     zipcode = models.IntegerField()
-    state = models.CharField(choices=STATE_CHOICES, max_length=50)
 
     def __str__(self):
         return str(self.id)
@@ -54,7 +54,8 @@ class Product(models.Model):
     description = models.TextField()
     Disclaimer = models.TextField(default="no")
     brand = models.CharField(max_length=100)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    category = models.CharField(
+        choices=CATEGORY_CHOICES, max_length=2, default="Sylhet")
     product_image = models.ImageField(upload_to='productimg')
 
     def __str__(self):

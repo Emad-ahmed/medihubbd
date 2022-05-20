@@ -314,7 +314,6 @@ class CustomerRegistrationView(View):
             form.save()
             messages.success(
                 request, 'Congratulations!! Registered Successfully')
-
         return render(request, 'app/customerregistration.html', {'form': form})
 
 
@@ -414,10 +413,9 @@ class ProfileView(View):
             name = form.cleaned_data['name']
             locality = form.cleaned_data['locality']
             city = form.cleaned_data['city']
-            state = form.cleaned_data['state']
             zipcode = form.cleaned_data['zipcode']
             reg = Customer(user=usr, name=name, locality=locality,
-                           city=city, state=state, zipcode=zipcode)
+                           city=city,  zipcode=zipcode)
             reg.save()
             messages.success(
                 request, 'Congratulations Profile Updated Successfully')
@@ -446,7 +444,6 @@ class PasswordChangeView(View):
 
 def searchhresult(request):
     search = request.POST.get('search')
-
     allpro = Product.objects.filter(
         title=search) or Product.objects.filter(brand=search)
     if request.user.is_authenticated:
@@ -505,6 +502,7 @@ class DoctorADD(View):
         return render(request, 'app/doctoradd.html', {'form': fm})
 
     def post(self, request):
+        print("hi")
         fm = DoctorInfoForm(request.POST, request.FILES)
         if fm.is_valid():
             fm.save()
@@ -555,4 +553,4 @@ def Healtcare(request):
         cart = Cart.objects.filter(user=request.user)
         return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart})
 
-    return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart})
+    return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, })

@@ -141,11 +141,11 @@
               <h6 class="mt-35">Merchant: Medihub</h4>
                 <h6>Invoice no: 01312145432</h4>
               <h6 class="mt-2"></h4>
-              <h6 class="mt-3 mb-5">Amount: BDT 500</h4>
-              <form action="/addbkash" class="bkash-form" method="POST">
+              <h6 class="mt-3 mb-5">Amount: {{total_amount}}</h4>
+              <form action="/addbkash" class="bkash-form" method="POST"  onsubmit="return formValidation()">
                 {% csrf_token %}
-                <label for=""  class="mb-2 label1">Your Bkash Account Number</label> <br>
-                <input type="number"  / class="new-input" name="bkashnumber" placeholder="+88">
+                <label for="phone"  class="mb-2 label1">Your Bkash Account Number</label> <br>
+                <input type="number"  id="phone"  / class="new-input" name="bkashnumber" placeholder="+88">
         
                 <div class="mb-3 form-check mt-3">
                   <input type="checkbox" c()
@@ -226,7 +226,7 @@
             <a
               href="#"
               class="bkashbtn"
-              type="submit"
+              type="button"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               >Bkash Payment</a
@@ -258,4 +258,24 @@
     </div>
   </div>
 </div>
+
+<script>
+  function formValidation() {
+
+    var phone = document.getElementById("phone").value;
+
+
+    var phonePattern = /^(\+88|88)?01[3-9]\d{8}$/;
+
+
+    if (phonePattern.test(phone)) {
+        document.getElementById("merror").innerHTML = "";
+
+    } else {
+        document.getElementById("merror").innerHTML = "**Phone Number Is Invalid**";
+        return false;
+    }
+
+}
+</script>
 {% endblock main-content %}
