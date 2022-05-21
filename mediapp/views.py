@@ -15,9 +15,9 @@ from mediapp.models import Customer, UploadPrescription, DoctorInfo, BkashPaymen
 import requests
 from django.http import FileResponse
 import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.units import inch
+# from reportlab.lib.pagesizes import letter
 import random
 
 
@@ -564,36 +564,36 @@ def Healtcare(request):
     return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, })
 
 
-def venue_pdf(request):
-    name = request.user.username
-    try:
-        n = BkashPayment.objects.get(candidate_name=name)
-    except:
-        n = None
-    if n:
-        buff = io.BytesIO()
-        c = canvas.Canvas(buff, pagesize=letter, bottomup=0)
-        textob = c.beginText()
-        textob.setTextOrigin(inch, inch)
-        textob.setFont("Helvetica", 14)
-        c_name = n.candidate_name
-        phone_number = str(n.candidate_phone)
-        id_no = n.id
+# def venue_pdf(request):
+#     name = request.user.username
+#     try:
+#         n = BkashPayment.objects.get(candidate_name=name)
+#     except:
+#         n = None
+#     if n:
+#         buff = io.BytesIO()
+#         c = canvas.Canvas(buff, pagesize=letter, bottomup=0)
+#         textob = c.beginText()
+#         textob.setTextOrigin(inch, inch)
+#         textob.setFont("Helvetica", 14)
+#         c_name = n.candidate_name
+#         phone_number = str(n.candidate_phone)
+#         id_no = n.id
 
-        lines = [
-            f"Name: {c_name}", f"Serial Number Is: {str(id_no)}", f"Phone Number Is: {phone_number}"]
+#         lines = [
+#             f"Name: {c_name}", f"Serial Number Is: {str(id_no)}", f"Phone Number Is: {phone_number}"]
 
-        for line in lines:
-            textob.textLine(line)
+#         for line in lines:
+#             textob.textLine(line)
 
-        c.drawText(textob)
-        c.showPage()
-        c.save()
-        buff.seek(0)
+#         c.drawText(textob)
+#         c.showPage()
+#         c.save()
+#         buff.seek(0)
 
-        return FileResponse(buff, as_attachment=True, filename="venue.pdf")
-    else:
-        return redirect("/")
+#         return FileResponse(buff, as_attachment=True, filename="venue.pdf")
+#     else:
+#         return redirect("/")
 
 
 @login_required
