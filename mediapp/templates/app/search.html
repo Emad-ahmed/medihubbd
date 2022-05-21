@@ -27,8 +27,8 @@
   }
 
   .card img{
-    height:50%;
-    width:50%;
+    height:16rem;
+    width:18rem;
   }
   .mybtn{
     display:block;
@@ -43,10 +43,10 @@
 {% if product %} <br />
 
 <div class="container">
-  <div class="row align-content-center">
+  <div class="row m-auto justify-content-center">
     
     {% for pro in product %}
-    <div class="col-lg-3 mx-4">
+    <div class="col-lg-3" mx-4">
       <a href="{% url 'product-detail' pro.id %}" class="btn">
         <div class="card text-center" style="width: 20rem;">
           <img src="{{pro.product_image.url}}" class="card-img-top" alt="..." />
@@ -68,7 +68,7 @@
 </div>
 
 {% else %}
-<div style="height: 265px">
+<div style="height: 265px;">
   <h1 class="text-center text-danger" style="margin-top: 10%">
     Not Found Anything
   </h1>
