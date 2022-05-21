@@ -105,7 +105,20 @@
 
 
 {% comment %} Banner Slider {% endcomment %}
-
+{% if messages %} {% for message in messages %}
+      <p
+        {%
+        if
+        message.tags
+        %}
+        class="alert alert-{{message.tags}} mb-5"
+        {%
+        endif
+        %}
+      >
+        {{message}}
+      </p>
+      {% endfor %} {% endif %}
 <div
   id="carouselExampleControls"
   class="carousel slide"

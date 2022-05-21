@@ -100,7 +100,8 @@ class OrderPlaced(models.Model):
 
 class UploadPrescription(models.Model):
     newuser = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
+    status = models.CharField(
+        max_length=50, choices=STATUS_CHOICES, default="Pending")
     prescription_image = models.ImageField(upload_to='presimg')
 
 

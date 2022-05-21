@@ -1,3 +1,4 @@
+from cgitb import text
 from typing import Counter
 from django import forms
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -12,6 +13,13 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from mediapp.models import Customer, UploadPrescription, DoctorInfo, BkashPayment, BkashProductPayment, Ambulanceadd
 import requests
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+import random
+
 
 # def home(request):
 #  return render(request, 'app/home.html')
@@ -52,6 +60,7 @@ class ProductView(View):
 
         fm = UploadPrescription(
             newuser=request.user,  prescription_image=prescription_image)
+        messages.success(request, "Sucessfully Uploaded Your Prescription")
         fm.save()
 
         if request.user.is_authenticated:
@@ -374,7 +383,7 @@ def addbkash(request,):
                                 candidate_phone=candidate_phone, payment_amount=payment_amount)
         n.save()
         messages.success(
-            request, "Successfully Payment Done Continue To place Order")
+            request, "Successfully Payment Done Now You Can Show Your Ticket")
         return redirect("/checkout")
 
 
@@ -386,7 +395,6 @@ def buy_payment_done(request):
         custid = request.GET.get('custid')
         customer = Customer.objects.get(id=custid)
         product = Product.objects.get(id=n)
-
         OrderPlaced(user=user, customer=customer,
                     product=product, quantity=1).save()
 
@@ -554,3 +562,43 @@ def Healtcare(request):
         return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, 'tcart': cart})
 
     return render(request, 'app/healthcare.html', {'covid': covid, 'devices': devices, 'herbal': herbal, 'babymom': babymom, 'nudrinks': nudrinks, 'Persoal': Persoal, 'otc': otc, 'pm': pm, })
+
+
+def venue_pdf(request):
+    name = request.user.username
+    try:
+        n = BkashPayment.objects.get(candidate_name=name)
+    except:
+        n = None
+    if n:
+        buff = io.BytesIO()
+        c = canvas.Canvas(buff, pagesize=letter, bottomup=0)
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 14)
+        c_name = n.candidate_name
+        phone_number = str(n.candidate_phone)
+        id_no = n.id
+
+        lines = [
+            f"Name: {c_name}", f"Serial Number Is: {str(id_no)}", f"Phone Number Is: {phone_number}"]
+
+        for line in lines:
+            textob.textLine(line)
+
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buff.seek(0)
+
+        return FileResponse(buff, as_attachment=True, filename="venue.pdf")
+    else:
+        return redirect("/")
+
+
+@login_required
+def prescription_order(request):
+    op = UploadPrescription.objects.filter(newuser=request.user)
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+    return render(request, 'app/prescription_order.html', {'order_placed': op, 'tcart': cart})
