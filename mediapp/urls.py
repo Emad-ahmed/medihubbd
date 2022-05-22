@@ -23,11 +23,12 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('addproduct/', views.Addproduct.as_view(), name='addproduct'),
     path('doctor/', views.doctor, name='doctor'),
-    #     path('venue_pdf/', views.venue_pdf, name='venue_pdf'),
+    path('venue_pdf/', views.venue_pdf, name='venue_pdf'),
     path('buy/<int:id>', views.buy_now, name='buy'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('address/', views.address, name='address'),
     path('orders/', views.orders, name='orders'),
+    path('orders_delete/<int:id>/', views.orders_delete, name='orders_delete'),
     path('prescription_order/', views.prescription_order,
          name='prescription_order'),
     path('devices/', views.devices, name='devices'),
@@ -35,9 +36,7 @@ urlpatterns = [
     path('addambulance/', views.addAmbulanceView.as_view(), name='addambulance'),
     path('covid/', views.covid, name='covid'),
     path('coviddata/<slug:data>', views.covid, name='coviddata'),
-
     path('covidinformation/', views.covidinformation, name='covidinformation'),
-
     path('Herbal/', views.Herbal, name='Herbal'),
     path('BabyMom/', views.BabyMom, name='BabyMom'),
     path('Nutrition/', views.Nutrition, name='Nutrition'),
@@ -59,7 +58,6 @@ urlpatterns = [
          name='passwordchange'),
     path('passwordchangedone/', auth_views.PasswordChangeDoneView.as_view(
         template_name='app/passwordchangedone.html'), name='passwordchangedone'),
-
     # Password Reset
     path('password-reset/',
          auth_views.PasswordResetView.as_view(template_name='app/password_reset.html', form_class=MyPasswordResetForm), name='password_reset'),

@@ -132,7 +132,6 @@ class BkashPayment(models.Model):
 
 
 class BkashProductPayment(models.Model):
-
     candidate_name = models.CharField(max_length=40)
     candidate_phone = models.IntegerField()
     payment_amount = models.IntegerField()
